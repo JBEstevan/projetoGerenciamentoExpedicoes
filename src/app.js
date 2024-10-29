@@ -8,7 +8,6 @@ import db from './config/dbConfig.js';
 
 const app = express();
 
-
 db();
 app.use(express.json());
 
