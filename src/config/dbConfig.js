@@ -1,10 +1,18 @@
 import mongoose from "mongoose";
 
-function db() {
-    mongoose
-    .connect("mongodb://localhost:27017/expedicoes")
-    .then(() => console.log("Conectado ao MongoDB"))
-    .catch(err => console.log(err))
-}
+const connectDB = async () => {
+    try {
+        await mongoose.connect(
+            `${process.env.URI}`
+            // `mongoose.connect('mongodb+srv://<DB_USER>:<PASSWORD>i@<CLUSTER_NAME>/<COLLECTION_NAME>');`
+        );
 
-export default db;
+    } catch (error) {
+        console.error('Erro ao conectar ao MongoDB', error);
+
+    }
+};
+
+connectDB();
+
+export default mongoose;
